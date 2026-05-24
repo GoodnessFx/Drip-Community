@@ -34,13 +34,13 @@ export function HomePage() {
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative min-h-screen w-full overflow-hidden flex items-center">
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
-          style={{
-            backgroundImage: 'url(/images/hero-section.jfif)',
-          }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
+        <div className="absolute inset-0 overflow-hidden">
+          <img 
+            src="/images/hero-section.jfif" 
+            alt="Drip Community Hero"
+            className="w-full h-full object-cover object-center md:object-[center_15%] transition-transform duration-1000"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/20 to-background" />
         </div>
 
         <div className="relative z-10 w-full flex flex-col items-center justify-center text-center px-4 pt-20">
