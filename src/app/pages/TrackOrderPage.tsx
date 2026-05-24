@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Package, Truck, CheckCircle2, Clock, Search, MessageCircle, ChevronLeft, MapPin } from 'lucide-react';
-import WhatsAppIcon from '../components/Icons/WhatsAppIcon';
+import { WhatsAppIcon } from '../components/Icons/WhatsAppIcon';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router';
 

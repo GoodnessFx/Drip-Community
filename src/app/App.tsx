@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { Routes, Route, useLocation } from 'react-router';
 import { AnimatePresence } from 'motion/react';
 import { Toaster } from 'sonner';
 
@@ -25,54 +25,54 @@ import { AdminLogin } from './pages/admin/AdminLogin';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 
 export default function App() {
+  const location = useLocation();
+
   useEffect(() => {
     const theme = localStorage.getItem('drip_theme') || 'dark';
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, []);
 
   return (
-    <BrowserRouter>
-      <div className="min-h-screen bg-background text-foreground">
-        <Navigation />
+    <div className="min-h-screen bg-background text-foreground">
+      <Navigation />
 
-        <main>
-          <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/shop" element={<ShopPage />} />
-              <Route path="/product/:id" element={<ProductDetailPage />} />
-              <Route path="/cart" element={<CartPage />} />
-              <Route path="/checkout" element={<CheckoutPage />} />
-              <Route path="/drops" element={<DropsPage />} />
-              <Route path="/community" element={<CommunityPage />} />
-              <Route path="/about" element={<AboutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/track" element={<TrackOrderPage />} />
-              <Route path="/account" element={<AccountPage />} />
-              
-              {/* Admin Routes */}
-              <Route path="/admin/login" element={<AdminLogin />} />
-              <Route path="/admin/*" element={<AdminDashboard />} />
-              
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </AnimatePresence>
-        </main>
+      <main>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/shop" element={<ShopPage />} />
+            <Route path="/product/:id" element={<ProductDetailPage />} />
+            <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
+            <Route path="/drops" element={<DropsPage />} />
+            <Route path="/community" element={<CommunityPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route path="/track" element={<TrackOrderPage />} />
+            <Route path="/account" element={<AccountPage />} />
+            
+            {/* Admin Routes */}
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/*" element={<AdminDashboard />} />
+            
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </AnimatePresence>
+      </main>
 
-        <Footer />
-        <WhatsAppFloat />
+      <Footer />
+      <WhatsAppFloat />
 
-        <Toaster
-          position="bottom-right"
-          toastOptions={{
-            style: {
-              background: 'var(--card)',
-              color: 'var(--foreground)',
-              border: '1px solid var(--accent)',
-            },
-          }}
-        />
-      </div>
-    </BrowserRouter>
+      <Toaster
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: 'var(--card)',
+            color: 'var(--foreground)',
+            border: '1px solid var(--accent)',
+          },
+        }}
+      />
+    </div>
   );
 }

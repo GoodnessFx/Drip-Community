@@ -37,7 +37,7 @@ export function HomePage() {
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
           style={{
-            backgroundImage: 'url(/images/products/Artistry Combo.jfif)',
+            backgroundImage: 'url(/images/hero-section.jfif)',
           }}
         >
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-background" />
