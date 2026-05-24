@@ -1,0 +1,188 @@
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --font-size: 16px;
+
+  /* Drip Community Brand Colors */
+  --drip-black: #080808;
+  --drip-white: #F5F5F0;
+  --drip-red: #E8002D;
+  --drip-gold: #C9A96E;
+  --drip-cream: #E8DCC8;
+  --drip-footer: #D4A96A;
+
+  /* Light mode - default to dark aesthetic */
+  --background: var(--drip-white);
+  --foreground: var(--drip-black);
+  --card: #FFFFFF;
+  --card-foreground: var(--drip-black);
+  --popover: #FFFFFF;
+  --popover-foreground: var(--drip-black);
+  --primary: var(--drip-black);
+  --primary-foreground: var(--drip-white);
+  --secondary: var(--drip-gold);
+  --secondary-foreground: var(--drip-black);
+  --muted: #F0F0EB;
+  --muted-foreground: #6B6B6B;
+  --accent: var(--drip-red);
+  --accent-foreground: var(--drip-white);
+  --destructive: var(--drip-red);
+  --destructive-foreground: var(--drip-white);
+  --border: rgba(8, 8, 8, 0.1);
+  --input: transparent;
+  --input-background: #F0F0EB;
+  --radius: 0;
+  --nav-bg: rgba(245, 245, 240, 0.85);
+}
+
+.dark {
+  /* Dark mode - premium matte black aesthetic */
+  --background: var(--drip-black);
+  --foreground: var(--drip-white);
+  --card: #1A1A1A;
+  --card-foreground: var(--drip-white);
+  --popover: #1A1A1A;
+  --popover-foreground: var(--drip-white);
+  --primary: var(--drip-white);
+  --primary-foreground: var(--drip-black);
+  --secondary: #2A2A2A;
+  --secondary-foreground: var(--drip-white);
+  --muted: #1A1A1A;
+  --muted-foreground: #A0A0A0;
+  --accent: var(--drip-red);
+  --accent-foreground: var(--drip-white);
+  --destructive: var(--drip-red);
+  --destructive-foreground: var(--drip-white);
+  --border: rgba(245, 245, 240, 0.1);
+  --input: rgba(245, 245, 240, 0.05);
+  --input-background: #1A1A1A;
+  --ring: var(--drip-red);
+  --nav-bg: rgba(8, 8, 8, 0.85);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-input-background: var(--input-background);
+  --color-switch-background: var(--switch-background);
+  --color-ring: var(--ring);
+  --color-nav-bg: var(--nav-bg);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    font-size: var(--font-size);
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /**
+  * Default typography styles for HTML elements (h1-h4, p, label, button, input).
+  * These are in @layer base, so Tailwind utility classes (like text-sm, text-lg) automatically override them.
+  */
+
+  h1 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h2 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h3 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  h4 {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  label {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+  }
+
+  button {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.5;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  input, textarea, select {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-normal);
+    line-height: 1.5;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--background);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--accent);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--drip-champagne);
+  }
+}
