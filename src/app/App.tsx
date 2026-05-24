@@ -1,9 +1,8 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { AnimatePresence } from 'motion/react';
 import { Toaster } from 'sonner';
 
-import { SplashScreen } from './components/SplashScreen';
 import { Navigation } from './components/Layout/Navigation';
 import { Footer } from './components/Layout/Footer';
 import { WhatsAppFloat } from './components/Layout/WhatsAppFloat';
@@ -26,55 +25,10 @@ import { AdminLogin } from './pages/admin/AdminLogin';
 import { AdminDashboard } from './pages/admin/AdminDashboard';
 
 export default function App() {
-  const [showSplash, setShowSplash] = useState(true);
-  const [splashComplete, setSplashComplete] = useState(false);
-
-  useEffect(() => {
-    // Safety timeout to ensure app always loads even if splash screen hangs
-    const safetyTimeout = setTimeout(() => {
-      setSplashComplete(true);
-      setShowSplash(false);
-    }, 5000);
-
-    try {
-      const hasSeenSplash = sessionStorage.getItem('drip_splash_seen');
-      if (hasSeenSplash) {
-        setShowSplash(false);
-        setSplashComplete(true);
-        clearTimeout(safetyTimeout);
-      }
-    } catch (e) {
-      console.error('Session storage access failed', e);
-      setShowSplash(false);
-      setSplashComplete(true);
-      clearTimeout(safetyTimeout);
-    }
-
-    return () => clearTimeout(safetyTimeout);
-  }, []);
-
-  const handleSplashComplete = () => {
-    try {
-      sessionStorage.setItem('drip_splash_seen', 'true');
-    } catch (e) {
-      console.error('Session storage set failed', e);
-    }
-    setShowSplash(false);
-    setSplashComplete(true);
-  };
-
   useEffect(() => {
     const theme = localStorage.getItem('drip_theme') || 'dark';
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, []);
-
-  if (showSplash) {
-    return <SplashScreen onComplete={handleSplashComplete} />;
-  }
-
-  if (!splashComplete) {
-    return null;
-  }
 
   return (
     <BrowserRouter>
