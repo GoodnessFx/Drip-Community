@@ -175,102 +175,101 @@ export function ProductDetailPage() {
                 </div>
               </div>
 
-                {/* Quantity */}
-                <div>
-                  <label className="block text-foreground/50 text-[10px] font-black tracking-widest uppercase mb-4">QUANTITY</label>
-                  <div className="inline-flex items-center bg-card border border-border p-1">
-                    <button
-                      onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="w-12 h-12 flex items-center justify-center text-foreground hover:text-accent transition-colors"
-                    >
-                      -
-                    </button>
-                    <span className="w-12 text-center font-mono font-bold text-foreground">{quantity}</span>
-                    <button
-                      onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
-                      className="w-12 h-12 flex items-center justify-center text-foreground hover:text-accent transition-colors"
-                    >
-                      +
-                    </button>
-                  </div>
+              {/* Quantity */}
+              <div>
+                <label className="block text-foreground/50 text-[10px] font-black tracking-widest uppercase mb-4">QUANTITY</label>
+                <div className="inline-flex items-center bg-card border border-border p-1">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-12 h-12 flex items-center justify-center text-foreground hover:text-accent transition-colors"
+                  >
+                    -
+                  </button>
+                  <span className="w-12 text-center font-mono font-bold text-foreground">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(Math.min(product.stock, quantity + 1))}
+                    className="w-12 h-12 flex items-center justify-center text-foreground hover:text-accent transition-colors"
+                  >
+                    +
+                  </button>
                 </div>
               </div>
+            </div>
 
-              {/* CTAs */}
-              <div className="flex flex-col gap-4 mb-10">
-                <button
-                  onClick={addToCart}
-                  className="w-full bg-foreground text-background py-6 font-black tracking-[0.2em] text-sm hover:bg-accent hover:text-white transition-all flex items-center justify-center gap-3 uppercase shadow-xl"
-                  style={{ fontFamily: 'Bebas Neue, sans-serif' }}
-                >
-                  <ShoppingBag size={20} />
-                  ADD TO BAG
-                </button>
-                <button
-                  onClick={orderViaWhatsApp}
-                  className="w-full bg-[#25D366] text-white py-6 font-black tracking-[0.2em] text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-3 uppercase shadow-lg shadow-green-500/20"
-                  style={{ fontFamily: 'Bebas Neue, sans-serif' }}
-                >
-                  <WhatsAppIcon size={20} />
-                  ORDER VIA WHATSAPP
-                </button>
-              </div>
+            {/* CTAs */}
+            <div className="flex flex-col gap-4 mb-10">
+              <button
+                onClick={addToCart}
+                className="w-full bg-foreground text-background py-6 font-black tracking-[0.2em] text-sm hover:bg-accent hover:text-white transition-all flex items-center justify-center gap-3 uppercase shadow-xl"
+                style={{ fontFamily: 'Bebas Neue, sans-serif' }}
+              >
+                <ShoppingBag size={20} />
+                ADD TO BAG
+              </button>
+              <button
+                onClick={orderViaWhatsApp}
+                className="w-full bg-[#25D366] text-white py-6 font-black tracking-[0.2em] text-sm hover:scale-[1.02] transition-transform flex items-center justify-center gap-3 uppercase shadow-lg shadow-green-500/20"
+                style={{ fontFamily: 'Bebas Neue, sans-serif' }}
+              >
+                <WhatsAppIcon size={20} />
+                ORDER VIA WHATSAPP
+              </button>
+            </div>
 
-              {/* Wishlist & Share */}
-              <div className="flex gap-8 mb-12 pb-12 border-b border-border">
-                <button className="flex items-center gap-2 text-foreground/50 text-[10px] font-black tracking-widest uppercase hover:text-accent transition-colors">
-                  <Heart size={16} />
-                  Add to Wishlist
-                </button>
-                <button className="flex items-center gap-2 text-foreground/50 text-[10px] font-black tracking-widest uppercase hover:text-secondary transition-colors">
-                  <Share2 size={16} />
-                  Share Product
-                </button>
-              </div>
+            {/* Wishlist & Share */}
+            <div className="flex gap-8 mb-12 pb-12 border-b border-border">
+              <button className="flex items-center gap-2 text-foreground/50 text-[10px] font-black tracking-widest uppercase hover:text-accent transition-colors">
+                <Heart size={16} />
+                Add to Wishlist
+              </button>
+              <button className="flex items-center gap-2 text-foreground/50 text-[10px] font-black tracking-widest uppercase hover:text-secondary transition-colors">
+                <Share2 size={16} />
+                Share Product
+              </button>
+            </div>
 
-              {/* Accordion Info */}
-              <div className="space-y-2">
-                <details className="group border-b border-border py-4">
-                  <summary className="flex items-center justify-between cursor-pointer list-none">
-                    <span className="text-foreground font-black tracking-widest text-sm uppercase flex items-center gap-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-                      <Info size={18} className="text-secondary" />
-                      DESCRIPTION & STORY
-                    </span>
-                    <span className="text-foreground/30 group-open:rotate-180 transition-transform">+</span>
-                  </summary>
-                  <p className="mt-4 text-foreground/60 text-sm leading-relaxed font-medium">
-                    {product.description}
-                  </p>
-                </details>
+            {/* Accordion Info */}
+            <div className="space-y-2">
+              <details className="group border-b border-border py-4">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <span className="text-foreground font-black tracking-widest text-sm uppercase flex items-center gap-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+                    <Info size={18} className="text-secondary" />
+                    DESCRIPTION & STORY
+                  </span>
+                  <span className="text-foreground/30 group-open:rotate-180 transition-transform">+</span>
+                </summary>
+                <p className="mt-4 text-foreground/60 text-sm leading-relaxed font-medium">
+                  {product.description}
+                </p>
+              </details>
 
-                <details className="group border-b border-border py-4">
-                  <summary className="flex items-center justify-between cursor-pointer list-none">
-                    <span className="text-foreground font-black tracking-widest text-sm uppercase flex items-center gap-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-                      <Truck size={18} className="text-secondary" />
-                      SHIPPING & DELIVERY
-                    </span>
-                    <span className="text-foreground/30 group-open:rotate-180 transition-transform">+</span>
-                  </summary>
-                  <div className="mt-4 text-foreground/60 text-sm space-y-2 font-medium">
-                    <p>🚚 Lagos: Same-day delivery (Order before 12PM)</p>
-                    <p>📦 Nationwide: 2-4 Business Days</p>
-                    <p>✅ Pickup: Available at our Lagos store</p>
-                  </div>
-                </details>
+              <details className="group border-b border-border py-4">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <span className="text-foreground font-black tracking-widest text-sm uppercase flex items-center gap-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+                    <Truck size={18} className="text-secondary" />
+                    SHIPPING & DELIVERY
+                  </span>
+                  <span className="text-foreground/30 group-open:rotate-180 transition-transform">+</span>
+                </summary>
+                <div className="mt-4 text-foreground/60 text-sm space-y-2 font-medium">
+                  <p>🚚 Lagos: Same-day delivery (Order before 12PM)</p>
+                  <p>📦 Nationwide: 2-4 Business Days</p>
+                  <p>✅ Pickup: Available at our Lagos store</p>
+                </div>
+              </details>
 
-                <details className="group border-b border-border py-4">
-                  <summary className="flex items-center justify-between cursor-pointer list-none">
-                    <span className="text-foreground font-black tracking-widest text-sm uppercase flex items-center gap-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
-                      <RefreshCcw size={18} className="text-secondary" />
-                      RETURNS & EXCHANGE
-                    </span>
-                    <span className="text-foreground/30 group-open:rotate-180 transition-transform">+</span>
-                  </summary>
-                  <p className="mt-4 text-foreground/60 text-sm leading-relaxed font-medium">
-                    We offer a 7-day exchange policy for size issues. Items must be unworn, with original tags and packaging intact. No refunds, exchanges only.
-                  </p>
-                </details>
-              </div>
+              <details className="group border-b border-border py-4">
+                <summary className="flex items-center justify-between cursor-pointer list-none">
+                  <span className="text-foreground font-black tracking-widest text-sm uppercase flex items-center gap-3" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>
+                    <RefreshCcw size={18} className="text-secondary" />
+                    RETURNS & EXCHANGE
+                  </span>
+                  <span className="text-foreground/30 group-open:rotate-180 transition-transform">+</span>
+                </summary>
+                <p className="mt-4 text-foreground/60 text-sm leading-relaxed font-medium">
+                  We offer a 7-day exchange policy for size issues. Items must be unworn, with original tags and packaging intact. No refunds, exchanges only.
+                </p>
+              </details>
             </div>
           </div>
         </div>
@@ -279,19 +278,21 @@ export function ProductDetailPage() {
         <section className="mt-32">
           <h2 className="text-4xl md:text-6xl font-black text-foreground mb-12" style={{ fontFamily: 'Bebas Neue, sans-serif' }}>YOU MIGHT ALSO LIKE</h2>
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="group bg-card border border-border">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    src={`https://images.unsplash.com/photo-${1583743814966 + i}-8936f5b7be1a?w=400&q=80`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                    alt=""
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-foreground font-bold text-sm mb-2 group-hover:text-secondary transition-colors line-clamp-1">Related Product Name</h3>
-                  <p className="text-secondary font-mono font-bold text-sm">₦15,000</p>
-                </div>
+            {products.slice(0, 4).map((item) => (
+              <div key={item.id} className="group bg-card border border-border">
+                <Link to={`/product/${item.id}`}>
+                  <div className="aspect-[4/5] overflow-hidden">
+                    <img
+                      src={item.image}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      alt={item.name}
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-foreground font-bold text-sm mb-2 group-hover:text-secondary transition-colors line-clamp-1">{item.name}</h3>
+                    <p className="text-secondary font-mono font-bold text-sm">₦{item.price.toLocaleString()}</p>
+                  </div>
+                </Link>
               </div>
             ))}
           </div>
