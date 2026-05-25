@@ -50,9 +50,6 @@ export function HomePage() {
             transition={{ delay: 0.6, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl mx-auto"
           >
-            <p className="text-[#C9A96E] text-[10px] md:text-sm tracking-[0.4em] font-black mb-4 uppercase">
-              Fashion Without Limit — Drip Community
-            </p>
             <h1
               className="text-[15vw] sm:text-[18vw] md:text-[12vw] font-black text-white leading-[0.8] tracking-tighter mb-8 drop-shadow-2xl"
               style={{ fontFamily: 'Bebas Neue, sans-serif' }}
