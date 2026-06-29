@@ -7,12 +7,24 @@ import { products } from '../data/products';
 
 export function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
+  const freshUploads = [
+    '/images/uploads/fresh-upload-01.jpeg',
+    '/images/uploads/fresh-upload-02.jpeg',
+    '/images/uploads/fresh-upload-03.jpeg',
+    '/images/uploads/fresh-upload-04.jpeg',
+    '/images/uploads/fresh-upload-05.jpeg',
+    '/images/uploads/fresh-upload-06.jpeg',
+    '/images/uploads/fresh-upload-07.jpeg',
+    '/images/uploads/fresh-upload-08.jpeg',
+    '/images/uploads/fresh-upload-09.jpeg',
+    '/images/uploads/fresh-upload-10.jpeg',
+  ];
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const featuredProducts = products.slice(0, 4);
+  const featuredProducts = [...products].slice(-4).reverse();
 
   const socialProof = [
     'Emeka from Lagos just ordered an Oversized Tee ⚡',
@@ -206,6 +218,51 @@ export function HomePage() {
                     <p className="font-mono text-lg font-black text-secondary">₦{product.price.toLocaleString()}</p>
                   </div>
                 </Link>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="py-24 px-4 lg:px-8">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+              <h2
+                className="text-5xl md:text-7xl font-black text-foreground leading-none"
+                style={{ fontFamily: 'Bebas Neue, sans-serif' }}
+              >
+                FRESH UPLOADS
+              </h2>
+              <p className="text-[#C9A96E] tracking-[0.2em] font-bold text-sm mt-2">EVERY IMAGE YOU SENT IS NOW LIVE ON THE SITE</p>
+            </div>
+            <Link to="/shop" className="text-foreground border-b-2 border-[#E8002D] pb-1 font-bold tracking-widest text-sm hover:text-[#C9A96E] transition-colors">
+              SHOP THE DROP
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {freshUploads.map((image, index) => (
+              <motion.div
+                key={image}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: index * 0.04 }}
+                className="group relative overflow-hidden border border-border bg-card"
+              >
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img
+                    src={image}
+                    alt={`Fresh upload ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                </div>
+                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-4">
+                  <p className="text-[10px] font-black tracking-[0.25em] text-white uppercase">
+                    Fresh Upload {String(index + 1).padStart(2, '0')}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>

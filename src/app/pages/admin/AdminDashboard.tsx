@@ -22,6 +22,7 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { toast } from 'sonner';
+import { products } from '../../data/products';
 
 // Mock Data for Admin
 const STATS = [
@@ -310,12 +311,12 @@ function ProductsPanel() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {Array.from({ length: 8 }).map((_, i) => (
-          <div key={i} className="bg-card border border-border overflow-hidden group">
+        {products.map((product) => (
+          <div key={product.id} className="bg-card border border-border overflow-hidden group">
             <div className="relative aspect-square bg-background">
               <img 
-                src={`https://images.unsplash.com/photo-${1583743814966 + i}-8936f5b7be1a?w=400&q=80`} 
-                alt="" 
+                src={product.image}
+                alt={product.name}
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute top-4 right-4 flex gap-2">
@@ -325,11 +326,11 @@ function ProductsPanel() {
               </div>
             </div>
             <div className="p-6">
-              <p className="text-[9px] font-black tracking-widest text-secondary uppercase mb-2">Oversized Tees</p>
-              <h4 className="text-foreground font-bold mb-4 tracking-tight">Oversized "DRIP" Graphic Tee</h4>
+              <p className="text-[9px] font-black tracking-widest text-secondary uppercase mb-2">{product.category}</p>
+              <h4 className="text-foreground font-bold mb-4 tracking-tight">{product.name}</h4>
               <div className="flex items-center justify-between">
-                <p className="text-sm font-black text-foreground font-mono">₦15,000</p>
-                <p className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest">Stock: 42</p>
+                <p className="text-sm font-black text-foreground font-mono">₦{product.price.toLocaleString()}</p>
+                <p className="text-[10px] font-bold text-foreground/30 uppercase tracking-widest">{product.badge || 'In Stock'}</p>
               </div>
             </div>
           </div>

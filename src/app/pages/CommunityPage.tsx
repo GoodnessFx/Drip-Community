@@ -33,6 +33,7 @@ export function CommunityPage() {
   ];
 
   const customerPhotos = [
+    '/images/products/premium-quality-crazy-denim-jeans.jpeg',
     '/images/products/Artistry Combo.jfif',
     '/images/products/Black clean Combo.jfif',
     '/images/products/Blue Faded jean.jfif',

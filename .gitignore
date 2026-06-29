@@ -35,3 +35,6 @@ build
 out
 .next
 .vercel
+
+# Raw source image dumps kept outside deployment assets
+WhatsApp Image *.jpeg

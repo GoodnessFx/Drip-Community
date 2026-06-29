@@ -5,6 +5,11 @@ export interface Product {
   image: string;
   category: string;
   badge?: string;
+  sizes?: string[];
+  colors?: Array<{
+    name: string;
+    hex: string;
+  }>;
   description?: string;
 }
 
@@ -153,5 +158,18 @@ export const products: Product[] = [
     price: 65000,
     image: '/images/products/timberland.jfif',
     category: 'Shoes',
+  },
+  {
+    id: 21,
+    name: 'Premium Quality Crazy Denim Jeans',
+    price: 45000,
+    image: '/images/products/premium-quality-crazy-denim-jeans.jpeg',
+    category: 'Jeans',
+    badge: 'NEW',
+    sizes: ['32', '33', '34', '35', '36', '37', '38'],
+    colors: [
+      { name: 'Light Wash', hex: '#8BB6E5' },
+    ],
+    description: 'Premium quality crazy denim jeans with a clean baggy fit, distressed detailing, and a bold streetwear finish. Available in sizes 32 to 38.',
   },
 ];

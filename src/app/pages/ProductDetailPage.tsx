@@ -10,12 +10,18 @@ import { products } from '../data/products';
 export function ProductDetailPage() {
   const { id } = useParams();
   const [selectedSize, setSelectedSize] = useState('');
-  const [selectedColor, setSelectedColor] = useState('Black');
   const [quantity, setQuantity] = useState(1);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Find product from data
   const productData = products.find(p => p.id === Number(id)) || products[0];
+  const productSizes = productData.sizes || ['S', 'M', 'L', 'XL', 'XXL'];
+  const productColors = productData.colors || [
+    { name: 'Black', hex: '#000000' },
+    { name: 'White', hex: '#FFFFFF' },
+    { name: 'Cream', hex: '#E8DCC8' },
+  ];
+  const [selectedColor, setSelectedColor] = useState(productColors[0]?.name || 'Black');
 
   const product = {
     id: productData.id.toString(),
@@ -27,14 +33,10 @@ export function ProductDetailPage() {
     images: [
       productData.image,
     ],
-    sizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    availableSizes: ['S', 'M', 'L', 'XL', 'XXL'],
-    colors: [
-      { name: 'Black', hex: '#000000' },
-      { name: 'White', hex: '#FFFFFF' },
-      { name: 'Cream', hex: '#E8DCC8' },
-    ],
-    description: `Elevate your street style with our signature ${productData.name}. Crafted from premium materials, this piece offers a structured yet breathable fit that lasts. Part of the Drip Community ${productData.category} collection.`,
+    sizes: productSizes,
+    availableSizes: productSizes,
+    colors: productColors,
+    description: productData.description || `Elevate your street style with our signature ${productData.name}. Crafted from premium materials, this piece offers a structured yet breathable fit that lasts. Part of the Drip Community ${productData.category} collection.`,
   };
 
   useEffect(() => {
@@ -44,7 +46,11 @@ export function ProductDetailPage() {
     const updated = [newProduct, ...recentlyViewed.filter((p: any) => p.id !== product.id)].slice(0, 10);
     localStorage.setItem('drip_recently_viewed', JSON.stringify(updated));
     window.scrollTo(0, 0);
-  }, [product.id, product.name, product.price, product.images]);
+    setSelectedSize('');
+    setSelectedColor(product.colors[0]?.name || 'Black');
+    setQuantity(1);
+    setCurrentImageIndex(0);
+  }, [product.id, product.name, product.price, product.images, product.colors]);
 
   const addToCart = () => {
     if (!selectedSize) {
@@ -159,7 +165,7 @@ export function ProductDetailPage() {
                   <button className="text-[10px] font-black tracking-widest text-accent border-b border-accent uppercase">Size Guide</button>
                 </div>
                 <div className="grid grid-cols-5 gap-3">
-                  {['S', 'M', 'L', 'XL', 'XXL'].map((size) => (
+                  {product.availableSizes.map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}

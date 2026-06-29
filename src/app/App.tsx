@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router';
 import { AnimatePresence } from 'motion/react';
 import { Toaster } from 'sonner';
@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import { Navigation } from './components/Layout/Navigation';
 import { Footer } from './components/Layout/Footer';
 import { WhatsAppFloat } from './components/Layout/WhatsAppFloat';
+import { SplashScreen } from './components/SplashScreen';
 
 import { HomePage } from './pages/HomePage';
 import { ShopPage } from './pages/ShopPage';
@@ -26,14 +27,24 @@ import { AdminDashboard } from './pages/admin/AdminDashboard';
 
 export default function App() {
   const location = useLocation();
+  const [showSplash, setShowSplash] = useState(() => sessionStorage.getItem('drip_splash_seen') !== 'true');
 
   useEffect(() => {
     const theme = localStorage.getItem('drip_theme') || 'dark';
     document.documentElement.classList.toggle('dark', theme === 'dark');
   }, []);
 
+  const handleSplashComplete = () => {
+    sessionStorage.setItem('drip_splash_seen', 'true');
+    setShowSplash(false);
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AnimatePresence>
+        {showSplash && <SplashScreen onComplete={handleSplashComplete} />}
+      </AnimatePresence>
+
       <Navigation />
 
       <main>
